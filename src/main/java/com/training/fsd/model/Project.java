@@ -31,8 +31,8 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "project")
 @SqlResultSetMapping(name = "TaskSummary", entities = @EntityResult(entityClass = Project.class, fields = {
-		@FieldResult(name = "projectId", column = "Project_ID"),
-		@FieldResult(name = "projectName", column = "Project"), @FieldResult(name = "startDate", column = "StartDate"),
+		@FieldResult(name = "project_Id", column = "Project_ID"),
+		@FieldResult(name = "project", column = "Project"), @FieldResult(name = "startDate", column = "StartDate"),
 		@FieldResult(name = "endDate", column = "EndDate"), @FieldResult(name = "priority", column = "Priority"),
 		@FieldResult(name = "user", column = "User_ID") }),
 		// @FieldResult(name = "tasksCount", column = "tasksCount"),
@@ -47,9 +47,9 @@ public class Project implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="Project_ID")
-	private int projectId;
+	private int project_id;
 	@Column(name="Project")
-	private String projectName;
+	private String project;
 	private Date startDate;
 	private Date endDate;
 	private int priority;
@@ -80,8 +80,8 @@ public class Project implements Serializable {
 	public Project(int project_id, String project, Date startDate, Date endDate, int priority, User user,
 			long tasksCount, long completedTasks) {
 		super();
-		this.projectId = project_id;
-		this.projectName = project;
+		this.project_id = project_id;
+		this.project = project;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.priority = priority;
@@ -130,20 +130,22 @@ public class Project implements Serializable {
 		this.user = user;
 	}
 
-	public int getProjectId() {
-		return projectId;
+	public int getProject_id() {
+		return project_id;
 	}
-	public void setProjectId(int projectId) {
-		this.projectId = projectId;
+
+	public void setProject_id(int project_id) {
+		this.project_id = project_id;
 	}
-	
-	
-	public String getProjectName() {
-		return projectName;
+
+	public String getProject() {
+		return project;
 	}
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+
+	public void setProject(String project) {
+		this.project = project;
 	}
+
 	public int getPriority() {
 		return priority;
 	}
@@ -151,12 +153,11 @@ public class Project implements Serializable {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
+
 	@Override
 	public String toString() {
-		return "Project [projectId=" + projectId + ", projectName=" + projectName + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", priority=" + priority + ", user=" + user + ", tasksCount=" + tasksCount
+		return "Project [project_id=" + project_id + ", project=" + project + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", priority=" + priority + ", user=" + user + ", tasksCount=" + tasksCount
 				+ ", completedTasks=" + completedTasks + "]";
 	}
-
-	
 }
