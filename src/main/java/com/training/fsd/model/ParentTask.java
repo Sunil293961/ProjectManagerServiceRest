@@ -28,25 +28,27 @@ public class ParentTask {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="Parent_ID")
-	private int parent_id;
+	private int parentId;
 	@Column(name ="Parent_Task")
-	private String parent_task;
-	public int getParent_id() {
-		return parent_id;
+	private String parentTaskName;
+	public int getParentId() {
+		return parentId;
 	}
-	public void setParent_id(int parent_id) {
-		this.parent_id = parent_id;
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
 	}
-	public String getParent_task() {
-		return parent_task;
+	public String getParentTaskName() {
+		return parentTaskName;
 	}
-	public void setParent_task(String parent_task) {
-		this.parent_task = parent_task;
+	public void setParentTaskName(String parentTaskName) {
+		this.parentTaskName = parentTaskName;
 	}
 	@Override
 	public String toString() {
-		return "ParentTask [parent_id=" + parent_id + ", parent_task=" + parent_task + "]";
+		return "ParentTask [parentId=" + parentId + ", parentTaskName=" + parentTaskName + "]";
 	}
+	
+	
 	
 
 }

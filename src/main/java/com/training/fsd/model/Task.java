@@ -36,19 +36,12 @@ public class Task implements Serializable {
 	public Task() {
 		super();
 		// TODO Auto-generated constructor stub
+	}	
+	public String getTaskName() {
+		return taskName;
 	}
-	
-	public int getTask_id() {
-		return task_id;
-	}
-	public void setTask_id(int task_id) {
-		this.task_id = task_id;
-	}
-	public String getTask() {
-		return task;
-	}
-	public void setTask(String task) {
-		this.task = task;
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
 	}
 	public Date getStartDate() {
 		return startDate;
@@ -77,7 +70,7 @@ public class Task implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="Task_ID")
-	private int task_id;
+	private int taskId;
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = ParentTask.class)
 	@JoinColumn(name = "Parent_ID")
 	private ParentTask parentTask;
@@ -88,7 +81,7 @@ public class Task implements Serializable {
 	@JoinColumn(name = "User_ID")
 	private User user;
 	@Column(name="Task")
-	private String task;
+	private String taskName;
 	private Date startDate;
 	private Date endDate;
 	private int priority;
@@ -112,12 +105,27 @@ public class Task implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public int getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(int taskId) {
+		this.taskId = taskId;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Override
 	public String toString() {
-		return "Task [task_id=" + task_id + ", parentTask=" + parentTask + ", project=" + project + ", user=" + user
-				+ ", task=" + task + ", startDate=" + startDate + ", endDate=" + endDate + ", priority=" + priority
-				+ ", status=" + status + "]";
+		return "Task [taskId=" + taskId + ", parentTask=" + parentTask + ", project=" + project + ", user=" + user
+				+ ", taskName=" + taskName + ", startDate=" + startDate + ", endDate=" + endDate + ", priority="
+				+ priority + ", status=" + status + "]";
 	}
+
+	
+	
 	
 	
 
