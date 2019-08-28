@@ -41,21 +41,20 @@ public class ProjectManagerService {
 	@Autowired(required = true)
 	ParentTaskRepository parentTaskRepository;
 
-	
-	///////////////////////////////////////
-	/////// PROJECT COMPONENT ////////////
-	//////////////////////////////////////
 	/***
 	 * method to add project. this method takes project object
 	 * as input and store into db. it returns back the project
 	 * object back
 	 */
+	///////////////////////////////////////
+	/////// PROJECT COMPONENT ////////////
+	//////////////////////////////////////
 
 	@Transactional
 	public Project createProject(Project projEntity) {
 		logger.debug("Service Method: createProject...");
 		Project newProj = new Project();
-		logger.debug("create Project:" + projEntity.getProjectName());
+		logger.debug("create Project:" + projEntity.getProject());
 		newProj = projectRepository.save(projEntity);
 		logger.debug("Service Method: End createProject...");
 		return newProj;
@@ -191,12 +190,24 @@ public class ProjectManagerService {
 	@Transactional
 	public void deleteUser(int pid) {
 		logger.debug("Service Method: Start Delete user...");
-		userRepository.deleteById(pid);
+		projectRepository.deleteById(pid);
 		logger.debug("Record Deleted successfully");
 		logger.debug("Service Method: End Delete user...");
 	}
 
-	
+	/***
+	 * method will return Parent task based on the parent task id
+	 * value.
+	 * @param parentId
+	 * @return ParentTask
+	 * 
+	 */
+	@Transactional
+	public ParentTask getParentTaskById(int parentId) {
+		logger.debug("service: getParentTaskById");
+		return parentTaskRepository.findById(parentId).get();
+
+	}
 
 	///////////////////////////////////////
 	/////// TASK COMPONENT ////////////
@@ -267,14 +278,6 @@ public class ProjectManagerService {
 		return tasks;
 
 	}
-	public void deleteTask(int taskId) {
-		// TODO Auto-generated method stub
-		logger.debug("Service Method: Start Delete task...");
-		taskRepository.deleteById(taskId);
-		logger.debug("Record Deleted successfully");
-		logger.debug("Service Method: End Delete task...");
-		
-	}
 
 	///////////////////////////////////////
 	/////// PARENTTASK COMPONENT //////////
@@ -312,38 +315,11 @@ public class ProjectManagerService {
 	 * @param parentId
 	 * @return
 	 */
-	/***
-	 * method will return Parent task based on the parent task id
-	 * value.
-	 * @param parentId
-	 * @return ParentTask
-	 * 
-	 */
-	@Transactional
-	public ParentTask getParentTaskById(int parentId) {
-		logger.debug("service: getParentTaskById");
-		return parentTaskRepository.findById(parentId).get();
-
-	}
 
 	@Transactional
 	public Optional<ParentTask> findParentTaskById(int parentId) {
 		logger.debug("Service Method: getUserById...");
 		return parentTaskRepository.findById(parentId);
 
-	}
-
-	public void deleteParentTask(int taskId) {
-		// TODO Auto-generated method stub
-		logger.debug("Service Method: Start Delete parent task...");
-		parentTaskRepository.deleteById(taskId);
-		logger.debug("Record Deleted successfully");
-		logger.debug("Service Method: End Delete parent task...");
-		
-	}
-	
-	public ParentTask updateParentTask(ParentTask task) {
-		logger.debug("service: updateTask");
-		return parentTaskRepository.save(task);
 	}
 }
